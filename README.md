@@ -43,17 +43,20 @@ SQL Server: `SELECT TOP(2) id, name
 FROM employees `
 
 # II. Intermediate SQL
-
-## PostgreSQL
-The keywords are as follows:
+## Selecting Data
+**PostgreSQL**.The keywords are as follows:
 1. `COUNT()`. Counts the number of records with a value in a field
 2. `DISTINCT`. Removes duplicates to return only unique values
 3. `COUNT()` with `DISTINCT`. Count the number of unique values in a field.
 
-## Query Execution
-### Order of Execution
-*It makes sense that SQL needs to know where to"* `SELECT` *data* `FROM` *before it can* `LIMIT` *the results.*  SQL code is processed differently than other programming languages in that you need to let the processor know where to pull the data from before making selections.
+**Query Execution**. *It makes sense that SQL needs to know where to* `SELECT` *data* `FROM` *before it can* `LIMIT` *the results.*  SQL code is processed differently than other programming languages in that you need to let the processor know where to pull the data from before making selections.
 
 It's essential to know your code's order of execution compared to the order it is written in to understand what results you'll get from your query and how to fix any errors that may come up. Knowing processing order is especially useful when debugging and aliasing fields and tables.
 
 Most common errors are misspelling, incorrect capitalization, and incorrect or missing punctuation especially commas.
+
+**SQL Formatting**. Adhering to SQL style guides allows for easier collaboration between peers. Having clean and readable code is highly valued in the community and a professional setting and will make things easier for anyone wanting to understand or debug our queries.
+
+In dealing with non-standard filed names, put non-standard filed names in double-quotes.
+
+## Filtering Records
