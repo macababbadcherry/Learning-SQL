@@ -52,3 +52,8 @@ The keywords are as follows:
 
 ## Query Execution
 ### Order of Execution
+*It makes sense that SQL needs to know where to"* `SELECT` *data* `FROM` *before it can* `LIMIT`* the results.* SQL code is processed differently than other programming languages in that you need to let the processor know where to pull the data from before making selections.
+
+It's essential to know your code's order of execution compared to the order it is written in to understand what results you'll get from your query and how to fix any errors that may come up. Knowing processing order is especially useful when debugging and aliasing fields and tables.
+
+Most common errors are misspelling, incorrect capitalization, and incorrect or missing punctuation especially commas.
