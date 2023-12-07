@@ -21,3 +21,9 @@ Listed below are the data types.
 //Schemas are often referred to as "blueprints" of databases. A schema shows a database's design, such as what tables are included in the database and any relationships between its tables. A schema also lets the reader know what data type each field can hold. The schema for our library database shows the VARCHAR data type is used for strings like book title, author, and genre. We can also see that the patrons table is related to the checkouts table, but not the books table.
 
 ## Querying
+
+### Query 
+Query is a request of data from the database. 
+
+### Writing Queries 
+1. 'AS'. Aliasing
