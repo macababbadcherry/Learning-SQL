@@ -43,3 +43,9 @@ SQL Server: `SELECT TOP(2) id, name
 FROM employees `
 
 # Intermediate SQL
+
+## PostgreSQL
+The keywords are as follows:
+1. `COUNT()`. Counts the number of records with a value in a field
+2. `DISTINCT`. Removes duplicates to return only unique values
+3. `COUNT()` with `DISTINCT`. Count the number of unique values in a field. 
