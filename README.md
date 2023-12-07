@@ -83,7 +83,15 @@ If a query has multiple filtering conditions, we will need to enclose the indivi
 **Filtering null values**. In SQL, NULL represents a missing or unknown value. Why is this useful? In the real world, our databases will likely have empty fields either because of human error or because the information is not available or is unknown. Knowing how to handle these fields is essential as they can affect any analyses we do.
 - `IS NULL`One quick way to see how much of our data is missing is by using `IS NULL` with the WHERE clause.
 - `IS NOT NULL`. This is to filter out/exclude missing values, so we only get results that are not NULL
-- 
+  
 ## C. Aggregate Functions
-**Summarizing data**. One way to do this is to summarize the data using SQL's aggregate functions. We already know one aggregate function, COUNT()! We'll now learn four new aggregate functions, allowing us to find the average, sum, minimum, and maximum of a specified field.
+**Summarizing data**. One way to do this is to summarize the data using SQL's aggregate functions. We already know one aggregate function, COUNT(). We'll now learn four new aggregate functions, allowing us to find the average, sum, minimum, and maximum of a specified field. These aggregate functions come after SELECT, exactly like COUNT().
+- `AVG`. It gives us the average value. 
+- `SUM`. It returns to the result of adding the values.
+- `MIN`. It returns the lowest value
+- `MAX`. It returns the highest value.
+
+Average and sum are the two aggregate functions we can only use on numerical fields since they require arithmetic. We can use count, minimum, and maximum with non-numerical fields. 
+
+**Summarizing subsets**. 
 ## D. Sorting and Grouping
