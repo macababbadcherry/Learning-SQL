@@ -26,4 +26,17 @@ Listed below are the data types.
 Query is a request of data from the database. 
 
 ### Writing Queries 
-1. `AS`. Use *aliasing* to rename columns
+Presented are few more commonly used keyword in SQL.
+1. `AS`. Use *aliasing* to rename columns.
+2. `DISTINCT`. Return a list of unique values.
+3. `CREATE VIEW`. A view is a virtual table that is the result of a saved SQL  `SELECT` statement. It is the query code that is stored for future use.
+
+## SQL Flavors
+PostgreSQL and SQL Server are the two popular SQL servers.
+1. PostgreSQL is a free and open-source relational database system
+2. SQL Server is also a relational database system which comes in both free and enterprise versions. It was created by Microsoft.
+
+### Comparing PostgreSQL and SQL Server
+`SELECT * 
+FROM books
+LIMIT 2 `
