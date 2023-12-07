@@ -37,6 +37,9 @@ PostgreSQL and SQL Server are the two popular SQL servers.
 2. SQL Server is also a relational database system which comes in both free and enterprise versions. It was created by Microsoft.
 
 ### Comparing PostgreSQL and SQL Server
-`SELECT * --
-FROM books --
-LIMIT 2 `
+PostgreSQL: `SELECT id, name
+FROM employees --
+LIMIT 2; `
+
+SQL Server: `SELECT TOP(2) id, name
+FROM employees `
