@@ -26,4 +26,4 @@ Listed below are the data types.
 Query is a request of data from the database. 
 
 ### Writing Queries 
-1. 'AS'. Aliasing
+1. `#AS`. Aliasing
