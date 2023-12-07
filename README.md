@@ -3,7 +3,7 @@ This repository serves as a directory for my work and exercises, showcasing my g
 
 Cetifications: insert link
 
-# Introduction to SQL
+# I. Introduction to SQL
 
 ## Relational Databases
 ### Databases
@@ -42,10 +42,13 @@ LIMIT 2; `
 SQL Server: `SELECT TOP(2) id, name
 FROM employees `
 
-# Intermediate SQL
+# II. Intermediate SQL
 
 ## PostgreSQL
 The keywords are as follows:
 1. `COUNT()`. Counts the number of records with a value in a field
 2. `DISTINCT`. Removes duplicates to return only unique values
-3. `COUNT()` with `DISTINCT`. Count the number of unique values in a field. 
+3. `COUNT()` with `DISTINCT`. Count the number of unique values in a field.
+
+## Query Execution
+### Order of Execution
