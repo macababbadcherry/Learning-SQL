@@ -61,11 +61,11 @@ In dealing with non-standard filed names, put non-standard filed names in double
 
 ## B. Filtering Records
 `WHERE` allows us to focus on only the data relevant to our business questions. The comparison operators we can use with WHERE to filter numbers are 
--  > greater than (that also means after),
-- < less than (that also means before),
-- = equal to,
-- <> greater than or equal to, less than or equal to, and not equal to.
-- 
+- `>` greater than (that also means after),
+- `<` less than (that also means before),
+- `=` equal to,
+- `<>` greater than or equal to, less than or equal to, and not equal to.
+  
 ## C. Aggregate Functions
 
 ## D. Sorting and Grouping
