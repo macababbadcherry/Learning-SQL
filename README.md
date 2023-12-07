@@ -60,7 +60,7 @@ Most common errors are misspelling, incorrect capitalization, and incorrect or m
 In dealing with non-standard filed names, put non-standard filed names in double-quotes.
 
 ## B. Filtering Records
-**Filteting numbers and exact textt**. `WHERE` allows us to focus on only the data relevant to our business questions. The comparison operators we can use with WHERE to filter numbers are 
+**Filteting numbers and exact text**. `WHERE` allows us to focus on only the data relevant to our business questions. The comparison operators we can use with WHERE to filter numbers are 
 - `>` greater than (that also means after),
 - `<` less than (that also means before),
 - `=` equal to,
@@ -80,7 +80,10 @@ If a query has multiple filtering conditions, we will need to enclose the indivi
 - `NOT LIKE`. It is used to find records that don't match the specified pattern. 
 - `IN`. It allows us to specify multiple values in a WHERE clause, making it easier and quicker to set numerous OR conditions.
 
-**Filtering null values**.
+**Filtering null values**. In SQL, NULL represents a missing or unknown value. Why is this useful? In the real world, our databases will likely have empty fields either because of human error or because the information is not available or is unknown. Knowing how to handle these fields is essential as they can affect any analyses we do.
+- `IS NULL`One quick way to see how much of our data is missing is by using `IS NULL` with the WHERE clause.
+- `IS NOT NULL`. This is to filter out/exclude missing values, so we only get results that are not NULL
+- 
 ## C. Aggregate Functions
-
+**Summarizing data**. One way to do this is to summarize the data using SQL's aggregate functions. We already know one aggregate function, COUNT()! We'll now learn four new aggregate functions, allowing us to find the average, sum, minimum, and maximum of a specified field.
 ## D. Sorting and Grouping
