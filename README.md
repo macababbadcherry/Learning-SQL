@@ -14,9 +14,9 @@ Tables are the main building blocks of databases. The rows and columns are refer
 
 ### Data Types
 Listed below are the data types.
-  1. String. It is a sequence of characters such a letters or punctuations where VARCHAR is very commonly used for storing strings.
-  2. Integers. It store whole numbers where INT, a common SQL integer data type, can store numbers from less than negative two billion to more than positive two billion.
-  3. Float. It stores numbers that include a fractional part where the NUMERIC data type can store floats which have up to 38 digits total - including those before and after the decimal point.
+  1. String. It is a sequence of characters such a letters or punctuations where `VARCHAR` is very commonly used for storing strings.
+  2. Integers. It store whole numbers where `INT`, a common SQL integer data type, can store numbers from less than negative two billion to more than positive two billion.
+  3. Float. It stores numbers that include a fractional part where the `NUMERIC` data type can store floats which have up to 38 digits total - including those before and after the decimal point.
 
 //Schemas are often referred to as "blueprints" of databases. A schema shows a database's design, such as what tables are included in the database and any relationships between its tables. A schema also lets the reader know what data type each field can hold. The schema for our library database shows the VARCHAR data type is used for strings like book title, author, and genre. We can also see that the patrons table is related to the checkouts table, but not the books table.
 
@@ -26,4 +26,4 @@ Listed below are the data types.
 Query is a request of data from the database. 
 
 ### Writing Queries 
-1. `#AS`. Aliasing
+1. `AS`. Use *aliasing* to rename columns
