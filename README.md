@@ -60,12 +60,27 @@ Most common errors are misspelling, incorrect capitalization, and incorrect or m
 In dealing with non-standard filed names, put non-standard filed names in double-quotes.
 
 ## B. Filtering Records
-`WHERE` allows us to focus on only the data relevant to our business questions. The comparison operators we can use with WHERE to filter numbers are 
+**Filteting numbers and exact textt**. `WHERE` allows us to focus on only the data relevant to our business questions. The comparison operators we can use with WHERE to filter numbers are 
 - `>` greater than (that also means after),
 - `<` less than (that also means before),
 - `=` equal to,
 - `<>` greater than or equal to, less than or equal to, and not equal to.
+
+`WHERE` can also filter string values. Use single quote.
+
+ To enhance our filters when using WHERE by adding multiple criteria. we can use the keywords, `OR`, `AND`, and `BETWEEN`.
+- `OR` is used if we need to satisfy at least one condition.
+- `AND` is used if we need to satisfy all criteria.
+- `BETWEEN` keyword provides a valuable shorthand for filtering values within a specified range.
   
+If a query has multiple filtering conditions, we will need to enclose the individual clauses in parentheses to ensure the correct execution order; otherwise, we may not get the expected results.
+
+**Filtering text**. This is filtering a pattern in a `WHERE` clause  rather than specific text. We'll be introducing three more SQL keywords into our vocabulary to help us achieve this: `LIKE`, `NOT LIKE`, and `IN`.
+- `LIKE`. It is used to search for a pttern in a field. We use a wildcard as a placeholder for some other values to accomplish this.  The percent wildcard will match zero, one, or many characters in the text.  The underscore wildcard will match a single character.
+- `NOT LIKE`. It is used to find records that don't match the specified pattern. 
+- `IN`. It allows us to specify multiple values in a WHERE clause, making it easier and quicker to set numerous OR conditions.
+
+**Filtering null values**.
 ## C. Aggregate Functions
 
 ## D. Sorting and Grouping
