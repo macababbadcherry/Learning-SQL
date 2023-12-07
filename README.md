@@ -43,7 +43,7 @@ SQL Server: `SELECT TOP(2) id, name
 FROM employees `
 
 # II. Intermediate SQL
-## Selecting Data
+## A. Selecting Data
 **PostgreSQL**.The keywords are as follows:
 1. `COUNT()`. Counts the number of records with a value in a field
 2. `DISTINCT`. Removes duplicates to return only unique values
@@ -59,4 +59,13 @@ Most common errors are misspelling, incorrect capitalization, and incorrect or m
 
 In dealing with non-standard filed names, put non-standard filed names in double-quotes.
 
-## Filtering Records
+## B. Filtering Records
+`WHERE` allows us to focus on only the data relevant to our business questions. The comparison operators we can use with WHERE to filter numbers are 
+-  > greater than (that also means after),
+- < less than (that also means before),
+- = equal to,
+- <> greater than or equal to, less than or equal to, and not equal to.
+- 
+## C. Aggregate Functions
+
+## D. Sorting and Grouping
