@@ -93,5 +93,12 @@ If a query has multiple filtering conditions, we will need to enclose the indivi
 
 Average and sum are the two aggregate functions we can only use on numerical fields since they require arithmetic. We can use count, minimum, and maximum with non-numerical fields. 
 
-**Summarizing subsets**. 
+`ROUND(number_to_round, decimal_places)`. It can only be used with numerical fields and is rounding a number to a specified decimal where the second parameter is optional. We could also pass a negative number as the second parameter and still get a result. 
+
+**Aggregate functions and arithmetic.** The key difference is that aggregate functions, like SUM, perform their operations on the fields vertically while arithmetic adds up the records horizontally.
+
 ## D. Sorting and Grouping
+
+**Sorting results.** Sorting results means we want to put our data in a specific order. It's another way to make our data easier to understand by quickly seeing it in a sequence. 
+
+`ORDER BY`. It is used to sort results of one or more fields.
