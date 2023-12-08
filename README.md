@@ -125,4 +125,4 @@ Average and sum are the two aggregate functions we can only use on numerical fie
 - Comparison operators
 - Arithmetic
 
-  # III. Joining Data in SQL
+# III. Joining Data in SQL
