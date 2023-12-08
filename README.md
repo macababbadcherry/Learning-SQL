@@ -99,6 +99,30 @@ Average and sum are the two aggregate functions we can only use on numerical fie
 
 ## D. Sorting and Grouping
 
-**Sorting results.** Sorting results means we want to put our data in a specific order. It's another way to make our data easier to understand by quickly seeing it in a sequence. 
+**Sorting results.** Sorting results means we want to put our data in a specific order. It's another way to make our data easier to understand by quickly seeing it in a sequence. `ORDER BY` is a keyword used in this action. 
 
 `ORDER BY`. It is used to sort results of one or more fields.
+- `DESC`. It is used to sort the results in descending order. 
+-  Multiple fileds. It will sort by the first field specified, then sort by the next, etc.
+
+**Grouping results.**  In the real world, we'll often need to summarize data for a particular group of results. SQL allows us to group with the  `GROUP BY` clause.
+
+`GROUP BY`. It is commonly used is commonly used with aggregate functions to provide summary statistics, particularly when only grouping a single field, certification, and selecting multiple fields, certification and title. 
+- Multiple fields. The order in which we write the fields affects how the data is grouped. The query here selects and groups certification and language while aggregating the title.
+- with `ORDER BY`. It is used to group our results, make a calculation, and then order our results (sorting anf grouping).
+
+**Filtering grouped data.** In SQL, we can't filter aggregate functions with WHERE clauses. Groups have their own special filtering word: `HAVING`. 
+
+`HAVING` vs `WHERE` WHERE filters individual records while HAVING filters grouped records. 
+- "What films were released in the year 2000?". This question does not indicate any sort of grouping. It asks to see only the titles from a specific year and can therefore be written as SELECT title, FROM films, WHERE release year equals 2000.
+- "In what years was the average film duration over two hours?". Recall the aggregate function will convert the duration values into one average value.
+
+## E. Summary
+- Selecting with `COUNT()` and `LIMIT`
+- Filtering with `WJERE`, `BETWEEN`, `AND`, `OR`, `LIKE`, `NOT LIKE`, `IN`, `%`, `_`, `IS NULL`, `IS NOT NULL`
+- `ROUND()` and aggregate functions
+- Sorting and grouping with `ORDER BY`, `DESC`, `GROUP BY` `HAVING`
+- Comparison operators
+- Arithmetic
+
+  # III. Joining Data in SQL
