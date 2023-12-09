@@ -168,10 +168,32 @@ A RIGHT JOIN can always be re-written as a LEFT JOIN. Because we typically type 
 Syntax
 SELECT *
 FROM left_table
-UNION / UNION ALL
+UNION / UNION ALL / INTERSECT / EXCEPT
 SELECT *
 FROM right_table
 UNION / UNION ALL
 
 - `INTERSECT`. It takes two tables as input, and returns only the records that exist in both tables.
 
+In INNER JOIN, similar to INTERSECT, only results where both fields match are returned. INNER JOIN will return duplicate values, whereas INTERSECT will only return common records once. 
+
+- `EXCEPT`. It allows us to identify the records that are present in one table, but not the other. More specifically, it retains only records from the left table that are not present in the right table. (Note that while the id_4 does exist in the right_table, the whole record does not match, which is why the last record of left_table is not faded out.)
+
+## D. Subqueries
+
+**Subquerying with semi join and anti join**.
+**Semi join.** It chooses records in the first table where a condition is met in the second table.
+-return to this part-
+**Anti join.** It chooses records in the first table where column 1 does NOT find a match in column 2.
+-return to this part-
+SELECT DISTINCT name
+FROM languages
+WHERE code IN
+    (SELECT code
+    FROM countries
+    WHERE region = 'Middle East')
+ORDER BY name;
+
+**Subqueries inside `SELECT`**.
+
+**Subqueries inside `FROM`**.
