@@ -197,3 +197,42 @@ ORDER BY name;
 **Subqueries inside `SELECT`**.
 
 **Subqueries inside `FROM`**.
+
+
+-- Select local_name and lang_num from appropriate tables
+SELECT local_name, sub.lang_num
+FROM countries,
+    (SELECT code, COUNT(*) AS lang_num
+     FROM languages
+     GROUP BY code) AS sub
+-- Where codes match    
+WHERE countries.code = sub.code
+ORDER BY lang_num DESC;
+
+-- Select relevant fields
+SELECT code, inflation_rate, unemployment_rate
+FROM economies
+WHERE year = 2015 
+  AND code NOT IN
+-- Subquery returning country codes filtered on gov_form
+    (SELECT code
+     FROM countries
+     WHERE (gov_form LIKE '%Monarchy%' OR gov_form LIKE '%Republic%'))
+ORDER BY inflation_rate;
+
+## E. Summary
+- Types of Joins
+  - `INNER JOIN` or just `JOIN`
+  - Outer join
+    a. `LEFT JOIN`
+    b. `OUTER JOIN`
+    c. `FULL JOIN`
+  - `CROSS JOIN`
+  - Semi join/anti join
+  - Self join
+
+- Set operations: Union/Union All, Intersect, Except
+  - Subqueries inside `SELECT`
+  - Subqueries inside `FROM`
+  - Subqueries inside `WHERE`
+- Types of Subqueries
