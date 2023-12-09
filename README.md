@@ -154,7 +154,24 @@ Syntax for performing an INNER JOIN. When selecting columns that exist in both t
 - `LEFT JOIN`. It will return all records in the left table, and those records in the right table that match on the joining field provided. Note that `LEFT JOIN` can also be written as `LEFT OUTER JOIN` in SQL. 
 - `RIGHT JOIN`. All records are retained from right table, even when id doesn't find a corresponding match in left table.  Null values are returned for the left value field in records that do not find a match. `RIGHT JOIN` can also be written as `RIGHT OUTER JOIN` in SQL.
 - `FULL JOIN`. It combines a `LEFT JOIN` and a `RIGHT JOIN`. Note that the keyword `FULL OUTER JOIN` can also be used to return the same result.
-  
 
 A RIGHT JOIN can always be re-written as a LEFT JOIN. Because we typically type from left to right, LEFT JOIN feels more intuitive to most users when constructing queries.
+
+**`CROSS JOIN`.** It creates all possible combinations of two tables. Note that the syntax is very minimal, and we do not specify ON or USING with CROSS JOIN. 
+
+## C. Set Theory for SQL Joins
+**Set operations.** It is a new way of joining data: set operations. SQL has three main set operations, UNION, INTERSECT and EXCEPT. For all set operations, the number of selected columns and their respective data types must be identical. The result will only use field names (or aliases, if used) of the first SELECT statement in the query.
+
+- `UNION`. The operator takes two tables as input, and returns all records from both tables. If two records are identical, `UNION` only returns them once.
+- `UNION ALL`. The operator takes two tables and returns all records from both tables, including duplicates.
+
+Syntax
+SELECT *
+FROM left_table
+UNION / UNION ALL
+SELECT *
+FROM right_table
+UNION / UNION ALL
+
+- `INTERSECT`. It takes two tables as input, and returns only the records that exist in both tables.
 
