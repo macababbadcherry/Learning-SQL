@@ -128,11 +128,12 @@ Average and sum are the two aggregate functions we can only use on numerical fie
 
 
 # III. Joining Data in SQL (PostgreSQL)
+**Joining data**. Joining  is an essential skill which enables us to draw information from separate tables together into a single, meaningful set of results.
 
 ## A. Introducing Inner Joins 
-**Joining data**. Joining  is an essential skill which enables us to draw information from separate tables together into a single, meaningful set of results.
-- `INNER JOIN`. Looks for records in both tables which match on a given field.
-  a. `USING`. When joining on two identical column names, we can employ the USING command followed by the shared column name in parentheses. Here, since the join field is named "country" in both tables, we can use USING.
+ **`INNER JOIN`.** Looks for records in both tables which match on a given field.
+  a.  `ON`
+  b. `USING`. When joining on two identical column names, we can employ the USING command followed by the shared column name in parentheses. Here, since the join field is named "country" in both tables, we can use USING.
 
 Syntax Example:
 SELECT name, e.year, fertility_rate, unemployment_rate
@@ -145,4 +146,15 @@ ON p.year = e.year AND c.code = e.code;
 Syntax for performing an INNER JOIN. When selecting columns that exist in both tables, such as "country" and "continent", the table-dot-column_name format must be used to avoid a SQL error. 
 1. After FROM, we list the left table, followed by the INNER JOIN keyword and the right table.
 2. We then specify the field to match the tables on, using the ON keyword. Here, we use the "country" field.
-3. Lastly, we add SELECT at the start of the query and choose the fields we want returned. 
+3. Lastly, we add SELECT at the start of the query and choose the fields we want returned.
+
+## B. Outer Joins, Cross Joins and Self Joins
+
+**Outer joins.** It can obtain records from other tables, even if matches are not found for the field being joined on.
+- `LEFT JOIN`. It will return all records in the left table, and those records in the right table that match on the joining field provided. Note that `LEFT JOIN` can also be written as `LEFT OUTER JOIN` in SQL. 
+- `RIGHT JOIN`. All records are retained from right table, even when id doesn't find a corresponding match in left table.  Null values are returned for the left value field in records that do not find a match. `RIGHT JOIN` can also be written as `RIGHT OUTER JOIN` in SQL.
+- `FULL JOIN`. It combines a `LEFT JOIN` and a `RIGHT JOIN`. Note that the keyword `FULL OUTER JOIN` can also be used to return the same result.
+  
+
+A RIGHT JOIN can always be re-written as a LEFT JOIN. Because we typically type from left to right, LEFT JOIN feels more intuitive to most users when constructing queries.
+
