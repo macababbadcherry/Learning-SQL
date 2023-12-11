@@ -82,7 +82,7 @@ In dealing with non-standard filed names, put non-standard filed names in double
 If a query has multiple filtering conditions, we will need to enclose the individual clauses in parentheses to ensure the correct execution order; otherwise, we may not get the expected results.
 
 **Filtering text**. This is filtering a pattern in a `WHERE` clause  rather than specific text. We'll be introducing three more SQL keywords into our vocabulary to help us achieve this: `LIKE`, `NOT LIKE`, and `IN`.
-- `LIKE`. It is used to search for a pttern in a field. We use a wildcard as a placeholder for some other values to accomplish this.  The percent wildcard will match zero, one, or many characters in the text.  The underscore wildcard will match a single character.
+- `LIKE`. It is used to search for a pattern in a field. We use a wildcard as a placeholder for some other values to accomplish this.  The percent wildcard will match zero, one, or many characters in the text.  The underscore wildcard will match a single character.
 - `NOT LIKE`. It is used to find records that don't match the specified pattern. 
 - `IN`. It allows us to specify multiple values in a WHERE clause, making it easier and quicker to set numerous OR conditions.
 
@@ -249,7 +249,6 @@ Use this calculation to filter populations for all records where life_expectancy
 ```SQL
 SELECT *
 FROM populations
--- Filter for only those populations where life expectancy is 1.15 times higher than average
 WHERE life_expectancy > 1.15 *
   (SELECT AVG(life_expectancy)
    FROM populations
@@ -260,13 +259,11 @@ WHERE life_expectancy > 1.15 *
 ``` SQL
 SELECT name, country_code, urbanarea_pop
 FROM cities 
--- Filter using a subquery on the countries table
 WHERE name IN
     (SELECT capital
     FROM countries)
 ORDER BY urbanarea_pop DESC;
 ```
-
 
 **Subqueries inside `SELECT`**. The second most common type of subquery is inside a SELECT clause. We have seen the use of GROUP BY to COUNT data by a group. However, since our monarchs data lives in a different table than the states table, this would involve a careful join before the GROUP BY.  A subquery inside a SELECT statement requires an alias.
 
@@ -288,7 +285,7 @@ ORDER BY cities_num DESC, country
 LIMIT 9;
 ```
 
-**Subqueries inside `FROM`**.
+**Subqueries inside `FROM`**. 
 
 ```SQL
 SELECT local_name, sub.lang_num
@@ -300,16 +297,44 @@ WHERE countries.code = sub.code
 ORDER BY lang_num DESC;
 ```
 
+**Subquery Challenge.** Suppose you're interested in analyzing inflation and unemployment rate for certain countries in 2015. You are not interested in countries with "Republic" or "Monarchy" as their form of government, but are interested in all other forms of government, such as emirate federations, socialist states, and commonwealths.
+
+You will use the field gov_form to filter for these two conditions, which represents a country's form of government. You can review the different entries for gov_form in the countries table.
+
+Instructions: (1) Select country code, inflation_rate, and unemployment_rate from economies. (2) Filter code for the set of countries which do not contain the words "Republic" or "Monarchy" in their gov_form.
+
 ```SQL
 SELECT code, inflation_rate, unemployment_rate
 FROM economies
 WHERE year = 2015 
   AND code NOT IN
-
     (SELECT code
      FROM countries
      WHERE (gov_form LIKE '%Monarchy%' OR gov_form LIKE '%Republic%'))
 ORDER BY inflation_rate;
+```
+**Final challenge.** Your task is to determine the top 10 capital cities in Europe and the Americas by city_perc, a metric you'll calculate. city_perc is a percentage that calculates the "proper" population in a city as a percentage of the total population in the wider metro area, as follows: city_proper_pop / metroarea_pop * 100. Do not use table aliasing in this exercise.
+
+```SQL
+-- Select fields from cities
+SELECT 
+	name, 
+    country_code, 
+    city_proper_pop, 
+    metroarea_pop,
+    city_proper_pop / metroarea_pop * 100 AS city_perc
+FROM cities
+-- Use subquery to filter city name
+WHERE name IN
+  (SELECT capital
+   FROM countries
+   WHERE (continent = 'Europe'
+   OR continent LIKE '%America'))
+-- Add filter condition such that metroarea_pop does not have null values
+	  AND metroarea_pop IS NOT NULL
+-- Sort and limit the result
+ORDER BY city_perc DESC
+LIMIT 10;
 ```
 
 ## E. Summary
