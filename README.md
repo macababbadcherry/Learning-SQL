@@ -131,7 +131,6 @@ Average and sum are the two aggregate functions we can only use on numerical fie
 - Comparison operators
 - Arithmetic
 
-
 # III. Joining Data in SQL (PostgreSQL)
 **Joining data**. Joining  is an essential skill which enables us to draw information from separate tables together into a single, meaningful set of results.
 
@@ -230,7 +229,7 @@ WHERE code IN
     FROM countries
     WHERE region = 'Middle East')
 ORDER BY name;
-```SQL
+```
 
 **Subqueries inside `WHERE`**. The `WHERE` clause is the most common place for subqueries, because filtering data is one of the most common data manipulation tasks. Recall that the `WHERE IN` clause enables us to provide a list of values to filter on.
 - The query shown will only work if some_field is of the same data type as some_numeric_field, because the result of the subquery will be a numeric field.
@@ -274,6 +273,7 @@ SELECT DISTINCT continent
    WHERE states.continent = monarchs.continent) AS monarch_count
 FROM states
 ```
+
 ```SQL
 SELECT countries.name AS country,
 -- Subquery that provides the count of cities   
@@ -313,6 +313,7 @@ WHERE year = 2015
      WHERE (gov_form LIKE '%Monarchy%' OR gov_form LIKE '%Republic%'))
 ORDER BY inflation_rate;
 ```
+
 **Final challenge.** Your task is to determine the top 10 capital cities in Europe and the Americas by city_perc, a metric you'll calculate. city_perc is a percentage that calculates the "proper" population in a city as a percentage of the total population in the wider metro area, as follows: city_proper_pop / metroarea_pop * 100. Do not use table aliasing in this exercise.
 
 ```SQL
