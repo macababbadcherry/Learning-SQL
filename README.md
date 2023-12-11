@@ -164,6 +164,17 @@ Syntax for performing an INNER JOIN. When selecting columns that exist in both t
 
 A RIGHT JOIN can always be re-written as a LEFT JOIN. Because we typically type from left to right, LEFT JOIN feels more intuitive to most users when constructing queries.
 
+```SQL
+SELECT countries.name AS country, COUNT(cities.name) AS cities_num
+FROM countries
+LEFT JOIN cities 
+ON countries.code = cities.country_code
+GROUP BY countries.name
+-- Order by count of cities as cities_num
+ORDER BY cities_num DESC, country
+LIMIT 9
+```
+
 **`CROSS JOIN`.** It creates all possible combinations of two tables. Note that the syntax is very minimal, and we do not specify ON or USING with CROSS JOIN. 
 
 ## C. Set Theory for SQL Joins
@@ -192,9 +203,25 @@ In INNER JOIN, similar to INTERSECT, only results where both fields match are re
 
 **Subquerying with semi join and anti join**.
 **Semi join.** It chooses records in the first table where a condition is met in the second table.
--return to this part-
+SELECT DISTINCT name
+FROM languages
+-- Add syntax to use bracketed subquery below as a filter
+WHERE code IN
+    (SELECT code
+    FROM countries
+    WHERE region = 'Middle East')
+ORDER BY name;
+
 **Anti join.** It chooses records in the first table where column 1 does NOT find a match in column 2.
--return to this part-
+
+SELECT code, name
+FROM countries
+WHERE continent = 'Oceania'
+
+  AND code NOT IN
+    (SELECT code
+    FROM currencies);
+    
 ```SQL
 SELECT DISTINCT name
 FROM languages
@@ -205,7 +232,61 @@ WHERE code IN
 ORDER BY name;
 ```SQL
 
-**Subqueries inside `SELECT`**.
+**Subqueries inside `WHERE`**. The `WHERE` clause is the most common place for subqueries, because filtering data is one of the most common data manipulation tasks. Recall that the `WHERE IN` clause enables us to provide a list of values to filter on.
+- The query shown will only work if some_field is of the same data type as some_numeric_field, because the result of the subquery will be a numeric field.
+- Subqueries inside WHERE can be from the same table or from a different table, and here, the subquery is from a different table.
+
+```SQL
+SELECT *
+FROM some_table
+WHERE some_field IN
+  (SELECT some_numeric_field
+   FROM another_table
+   WHERE field2 = some_condition)
+```
+
+Use this calculation to filter populations for all records where life_expectancy is 1.15 times higher than average.
+```SQL
+SELECT *
+FROM populations
+-- Filter for only those populations where life expectancy is 1.15 times higher than average
+WHERE life_expectancy > 1.15 *
+  (SELECT AVG(life_expectancy)
+   FROM populations
+   WHERE year = 2015) 
+    AND year = 2015;
+```
+
+``` SQL
+SELECT name, country_code, urbanarea_pop
+FROM cities 
+-- Filter using a subquery on the countries table
+WHERE name IN
+    (SELECT capital
+    FROM countries)
+ORDER BY urbanarea_pop DESC;
+```
+
+
+**Subqueries inside `SELECT`**. The second most common type of subquery is inside a SELECT clause. We have seen the use of GROUP BY to COUNT data by a group. However, since our monarchs data lives in a different table than the states table, this would involve a careful join before the GROUP BY.  A subquery inside a SELECT statement requires an alias.
+
+```SQL
+SELECT DISTINCT continent
+  (SELECT COUNT(*)
+   FROM monarchs
+   WHERE states.continent = monarchs.continent) AS monarch_count
+FROM states
+```
+```SQL
+SELECT countries.name AS country,
+-- Subquery that provides the count of cities   
+  (SELECT COUNT(*)
+   FROM cities
+   WHERE countries.code = cities.country_code) AS cities_num
+FROM countries
+ORDER BY cities_num DESC, country
+LIMIT 9;
+```
 
 **Subqueries inside `FROM`**.
 
@@ -239,7 +320,7 @@ ORDER BY inflation_rate;
     b. `OUTER JOIN`
     c. `FULL JOIN`
   - `CROSS JOIN`
-  - Semi join/anti join
+  - Semi join/ anti join
   - Self join
 
 - Set operations: Union/Union All, Intersect, Except
