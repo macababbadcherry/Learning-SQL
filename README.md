@@ -339,7 +339,7 @@ LIMIT 10;
 ```
 
 ## E. Summary
-- Types of Joins
+- Types of Joins. In SQL, a join combines columns from one or more tables in a relational database via a lookup process. 
   - `INNER JOIN` or just `JOIN`
   - Outer join
     a. `LEFT JOIN`
@@ -349,8 +349,23 @@ LIMIT 10;
   - Semi join/ anti join
   - Self join
 
-- Set operations: Union/Union All, Intersect, Except
+- Set operations: Union/Union All, Intersect, Except. These are different ways of joining data in SQ
   - Subqueries inside `SELECT`
   - Subqueries inside `FROM`
   - Subqueries inside `WHERE`
 - Types of Subqueries
+
+# IV. Data Manipulation
+## A. We'll take the CASE
+
+**CASE statements.** Case statements are SQL's version of an "IF this THEN that" statement. Case statements have three parts -- a `WHEN` clause, a `THEN` clause, and an `ELSE` clause, finished with `END`.
+-  `WHEN` clause. It tests a given condition
+-  `THEN` clause. If this condition is TRUE, it returns the item you specify after your THEN clause.
+You can create multiple conditions by listing WHEN and THEN statements within the same CASE statement.
+-  `ELSE` clause. The CASE statement is then ended with an ELSE clause that returns a specified value if all of your when statements are not true.
+-  `END`. When you have completed your statement, be sure to include the term END and give it an alias.
+The completed CASE statement will evaluate to one column in your SQL query.
+## B. Short and Simple Subqueries
+## C. Correlated Queries, Nested Queries, and Common Table Expressions
+## D. Window Functions
+## E. Summary
