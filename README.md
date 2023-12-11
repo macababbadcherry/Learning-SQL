@@ -367,7 +367,7 @@ LIMIT 10;
 -  `WHEN` clause. It tests a given condition
 -  `THEN` clause. If this condition is TRUE, it returns the item you specify after your THEN clause.
 You can create multiple conditions by listing WHEN and THEN statements within the same CASE statement.
--  `ELSE` clause. The CASE statement is then ended with an ELSE clause that returns a specified value if all of your when statements are not true.
+-  `ELSE` clause. The CASE statement is then ended with an ELSE clause that returns a specified value if all of your when statements are not true. The query can go directly to END after THEN disregarding `ELSE` clause.
 -  `END`. When you have completed your statement, be sure to include the term END and give it an alias.
 The completed CASE statement will evaluate to one column in your SQL query.
 
@@ -438,7 +438,39 @@ WHERE
 		END IS NOT NULL;
 ```
 
-`CASE WHEN` with aggregate functions. 
+`COUNT` and `CASE WHEN` with multiple conditions.
+
+```SQL
+SELECT 
+	c.name AS country,
+    -- Sum the total records in each season where the home team won
+	SUM(CASE WHEN m.season = '2012/2013' AND m.home_goal > m.away_goal 
+        THEN 1 ELSE 0 END) AS matches_2012_2013,
+ 	SUM(CASE WHEN m.season = '2013/2014' AND m.home_goal > m.away_goal 
+        THEN 1 ELSE 0 END) AS matches_2013_2014,
+	SUM(CASE WHEN m.season = '2014/2015' AND m.home_goal > m.away_goal  
+        THEN 1 ELSE 0 END) AS matches_2014_2015
+FROM country AS c
+LEFT JOIN match AS m
+ON c.id = m.country_id
+-- Group by country name alias
+GROUP BY COUNTRY;
+```
+```SQL
+SELECT 
+	c.name AS country,
+    -- Round the percentage of tied games to 2 decimal points
+	ROUND(AVG(CASE WHEN m.season='2013/2014' AND m.home_goal = m.away_goal THEN 1
+			 WHEN m.season='2013/2014' AND m.home_goal != m.away_goal THEN 0
+			 END),2) AS pct_ties_2013_2014,
+	ROUND(AVG(CASE WHEN m.season='2014/2015' AND m.home_goal = m.away_goal THEN 1
+			 WHEN m.season='2014/2015' AND m.home_goal != m.away_goal THEN 0
+			 END),2) AS pct_ties_2014_2015
+FROM country AS c
+LEFT JOIN matches AS m
+ON c.id = m.country_id
+GROUP BY country;
+```
 
 ## B. Short and Simple Subqueries
 ## C. Correlated Queries, Nested Queries, and Common Table Expressions
