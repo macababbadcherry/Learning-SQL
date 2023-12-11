@@ -358,13 +358,88 @@ LIMIT 10;
 # IV. Data Manipulation
 ## A. We'll take the CASE
 
-**CASE statements.** Case statements are SQL's version of an "IF this THEN that" statement. Case statements have three parts -- a `WHEN` clause, a `THEN` clause, and an `ELSE` clause, finished with `END`.
+**CASE statements.** Case statements are SQL's version of an "IF this THEN that" statement. CASE statements can be used to create columns 
+- for categorizing data,
+- to filter your data in the WHERE clause, and
+- to aggregate data based on the result of a logical test.
+
+`CASE`. Case statements have three parts -- a `WHEN` clause, a `THEN` clause, and an `ELSE` clause, finished with `END`. This is located in the `SELECT` line.
 -  `WHEN` clause. It tests a given condition
 -  `THEN` clause. If this condition is TRUE, it returns the item you specify after your THEN clause.
 You can create multiple conditions by listing WHEN and THEN statements within the same CASE statement.
 -  `ELSE` clause. The CASE statement is then ended with an ELSE clause that returns a specified value if all of your when statements are not true.
 -  `END`. When you have completed your statement, be sure to include the term END and give it an alias.
 The completed CASE statement will evaluate to one column in your SQL query.
+
+```SQL
+SELECT 
+	m.date,
+	t.team_long_name AS opponent,
+    -- Complete the CASE statement with an alias
+	CASE WHEN m.home_goal > m.away_goal THEN 'Barcelona win!'
+        WHEN m.home_goal < m.away_goal THEN 'Barcelona loss :(' 
+        ELSE 'Tie' END AS outcome 
+FROM matches_spain AS m
+LEFT JOIN teams_spain AS t 
+ON m.awayteam_id = t.team_api_id
+-- Filter for Barcelona as the home team
+WHERE m.hometeam_id = 8634;
+```
+
+```SQL
+-- Select matches where Barcelona was the away team
+SELECT
+	m.date,
+	t.team_long_name AS opponent,
+	CASE WHEN m.home_goal < m.away_goal THEN 'Barcelona win!'
+         WHEN m.home_goal > m.away_goal THEN 'Barcelona loss :('
+         ELSE 'Tie' END AS outcome
+FROM matches_spain AS m
+-- Join teams_spain to matches_spain
+LEFT JOIN teams_spain AS t
+ON m.hometeam_id = t.team_api_id
+WHERE m.awayteam_id = 8634;
+```
+
+```SQL
+SELECT 
+	date,
+	CASE WHEN hometeam_id = 8634 THEN 'FC Barcelona' 
+         ELSE 'Real Madrid CF' END as home,
+	CASE WHEN awayteam_id = 8634 THEN 'FC Barcelona' 
+         ELSE 'Real Madrid CF' END as away,
+	-- Identify all possible match outcomes
+	CASE WHEN home_goal > away_goal AND hometeam_id = 8634 THEN 'Barcelona win!'
+        WHEN home_goal > away_goal AND hometeam_id = 8633 THEN 'Real Madrid win!'
+        WHEN home_goal < away_goal AND awayteam_id = 8634 THEN 'Barcelona win!'
+        WHEN home_goal < away_goal AND awayteam_id = 8633 THEN 'Real Madrid win!'
+        ELSE 'Tie!' END AS outcome
+FROM matches_spain
+WHERE (awayteam_id = 8634 OR hometeam_id = 8634)
+      AND (awayteam_id = 8633 OR hometeam_id = 8633);
+```
+
+`CASE WHEN` ... `AND` then some. If you want to test multiple logical conditions in a CASE statement, you can use AND inside your WHEN clause. The easiest way to correct for this is to ensure you add specific filters in the WHERE clause. 
+
+**Filtering CASE statements.** In order to filter a query by a CASE statement, you include the entire CASE statement, except its alias, in WHERE. You then specify what you want to include, or exclude.  (Use the CASE statement in the WHERE clause to filter all NULL values.)
+
+```SQL
+-- Select the season, date, home_goal, and away_goal columns
+SELECT 
+	season,
+    date,
+	home_goal,
+	away_goal
+FROM matches_italy
+WHERE 
+-- Exclude games not won by Bologna
+	CASE WHEN hometeam_id = 9857 AND home_goal > away_goal THEN'Bologna Win'
+		WHEN awayteam_id = 9857 AND away_goal > home_goal THEN 'Bologna Win' 
+		END IS NOT NULL;
+```
+
+`CASE WHEN` with aggregate functions. 
+
 ## B. Short and Simple Subqueries
 ## C. Correlated Queries, Nested Queries, and Common Table Expressions
 ## D. Window Functions
