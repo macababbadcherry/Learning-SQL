@@ -25,7 +25,7 @@ Query is a request of data from the database.
 
 ### Writing Queries 
 Presented are few more commonly used keyword in SQL.
-1. `AS`. Use *aliasing* to rename columns.
+1. `AS`. Use aliasing to rename columns.
 2. `DISTINCT`. Return a list of unique values.
 3. `CREATE VIEW`. A view is a virtual table that is the result of a saved SQL  `SELECT` statement. It is the query code that is stored for future use.
 
@@ -35,12 +35,18 @@ PostgreSQL and SQL Server are the two popular SQL servers.
 2. SQL Server is also a relational database system which comes in both free and enterprise versions. It was created by Microsoft.
 
 ### Comparing PostgreSQL and SQL Server
-PostgreSQL: `SELECT id, name
-FROM employees --
+PostgreSQL: `
+```SQL
+SELECT id, name
+FROM employees 
 LIMIT 2; `
+```
 
-SQL Server: `SELECT TOP(2) id, name
-FROM employees `
+SQL Server: `
+```SQL
+SELECT TOP(2) id, name
+FROM employees;
+```
 
 # II. Intermediate SQL
 ## A. Selecting Data
@@ -119,12 +125,11 @@ Average and sum are the two aggregate functions we can only use on numerical fie
 
 ## E. Summary
 - Selecting with `COUNT()` and `LIMIT`
-- Filtering with `WJERE`, `BETWEEN`, `AND`, `OR`, `LIKE`, `NOT LIKE`, `IN`, `%`, `_`, `IS NULL`, `IS NOT NULL`
+- Filtering with `WHERE`, `BETWEEN`, `AND`, `OR`, `LIKE`, `NOT LIKE`, `IN`, `%`, `_`, `IS NULL`, `IS NOT NULL`
 - `ROUND()` and aggregate functions
 - Sorting and grouping with `ORDER BY`, `DESC`, `GROUP BY` `HAVING`
 - Comparison operators
 - Arithmetic
-
 
 
 # III. Joining Data in SQL (PostgreSQL)
@@ -168,12 +173,14 @@ A RIGHT JOIN can always be re-written as a LEFT JOIN. Because we typically type 
 - `UNION ALL`. The operator takes two tables and returns all records from both tables, including duplicates.
 
 Syntax
+```SQL
 SELECT *
 FROM left_table
 UNION / UNION ALL / INTERSECT / EXCEPT
 SELECT *
 FROM right_table
 UNION / UNION ALL
+```
 
 - `INTERSECT`. It takes two tables as input, and returns only the records that exist in both tables.
 
@@ -188,6 +195,7 @@ In INNER JOIN, similar to INTERSECT, only results where both fields match are re
 -return to this part-
 **Anti join.** It chooses records in the first table where column 1 does NOT find a match in column 2.
 -return to this part-
+```SQL
 SELECT DISTINCT name
 FROM languages
 WHERE code IN
@@ -195,32 +203,33 @@ WHERE code IN
     FROM countries
     WHERE region = 'Middle East')
 ORDER BY name;
+```SQL
 
 **Subqueries inside `SELECT`**.
 
 **Subqueries inside `FROM`**.
 
-
--- Select local_name and lang_num from appropriate tables
+```SQL
 SELECT local_name, sub.lang_num
 FROM countries,
     (SELECT code, COUNT(*) AS lang_num
      FROM languages
      GROUP BY code) AS sub
--- Where codes match    
 WHERE countries.code = sub.code
 ORDER BY lang_num DESC;
+```
 
--- Select relevant fields
+```SQL
 SELECT code, inflation_rate, unemployment_rate
 FROM economies
 WHERE year = 2015 
   AND code NOT IN
--- Subquery returning country codes filtered on gov_form
+
     (SELECT code
      FROM countries
      WHERE (gov_form LIKE '%Monarchy%' OR gov_form LIKE '%Republic%'))
 ORDER BY inflation_rate;
+```
 
 ## E. Summary
 - Types of Joins
