@@ -136,15 +136,14 @@ Average and sum are the two aggregate functions we can only use on numerical fie
   b. `USING`. When joining on two identical column names, we can employ the USING command followed by the shared column name in parentheses. Here, since the join field is named "country" in both tables, we can use USING.
 
 Syntax Example:
-``SQL
-`
+```SQL
 SELECT name, e.year, fertility_rate, unemployment_rate
 FROM countries AS c
 INNER JOIN populations AS p
 ON c.code = p.country_code
 INNER JOIN economies AS e
 ON p.year = e.year AND c.code = e.code;
-``
+```
 
 Syntax for performing an INNER JOIN. When selecting columns that exist in both tables, such as "country" and "continent", the table-dot-column_name format must be used to avoid a SQL error. 
 1. After FROM, we list the left table, followed by the INNER JOIN keyword and the right table.
