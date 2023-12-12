@@ -7,6 +7,7 @@ Note that the information related to the case study has been sourced from [[Data
 
 ## Project Tasks
 This project involves 9 tasks that require the use of SQL to analyze and optimize the revenue of an online sports clothing company. 
+
 1. Counting missing values
 2. Nike vs Adidas pricing
 3. Labeling price ranges
