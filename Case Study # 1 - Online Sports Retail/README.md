@@ -25,4 +25,9 @@ This project involves 9 tasks that require the use of SQL to analyze and optimiz
 8. Footwear product performance
 9. Clothing product performance
 
+## Analysis and Insights
+
+### 1. Counting missing values
+Count the total number of products, along with the number of non-missing values in description, listing_price, and last_visited.
+
 
