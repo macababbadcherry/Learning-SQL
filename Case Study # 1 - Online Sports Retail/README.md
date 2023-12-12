@@ -1,8 +1,7 @@
 # Case Study 1 : Optimizing Online Sports Retail Revenue
 
 ## Project Description
--In this project, we'll analyze the product data of an online sports clothing company and develop recommendations to help the company maximize its revenue. The information includes prices, discounts, revenue, ratings, reviews, product descriptions, and website traffic.-
-
+~~In this project, we'll analyze the product data of an online sports clothing company and develop recommendations to help the company maximize its revenue. The information includes prices, discounts, revenue, ratings, reviews, product descriptions, and website traffic.~~
 
 Sports clothing and athleisure attire is a huge industry, worth approximately $193 billion in 2021 with a strong growth forecast over the next decade!
 
