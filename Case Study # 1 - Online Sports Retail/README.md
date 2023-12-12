@@ -29,5 +29,21 @@ This project involves 9 tasks that require the use of SQL to analyze and optimiz
 
 ### 1. Counting missing values
 Count the total number of products, along with the number of non-missing values in description, listing_price, and last_visited.
+```SQL
+SELECT
+  COUNT(*) as total rows,
+  COUNT() 
+FROM info i
+JOIN finance f
+ON i.product_id = f.product_id
+JOIN traffic t
+ON i.product_id = t.product_id
+```
+
+Steps:
+- Use `JOIN` to merge `info` table with `finance` and `traffic`, matching on `product id`.
+- To determine the total number of the required fields, we use `COUNT`.
+
+Results:
 
 
