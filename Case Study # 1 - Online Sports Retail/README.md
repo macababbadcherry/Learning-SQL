@@ -7,13 +7,12 @@ Note that the project description and tasks of this case study has been sourced 
 
 import markdown
 
-str = """
 |     Time    | Number of Trial with Results | Unique Units |
 |:-----------:|:----------------------------:|:------------:|
-| 20 Apr 2018 |            30,763            |    21,094    |
-|  7 Feb 2019 |            34,751            |    23,733    |
-| 12 Apr 2019 |            35,926            |    24,548    |
-|             |                              |              |
+ 20 Apr 2018             30,763                21,094    
+  7 Feb 2019             34,751                23,733    
+ 12 Apr 2019             35,926                24,548    
+                                                         
 """
 
 extensions = ['markdown.extensions.extra', 'markdown.extensions.smarty']
