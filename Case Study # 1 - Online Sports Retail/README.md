@@ -31,9 +31,9 @@ This project involves 9 tasks that require the use of SQL to analyze and optimiz
 Count the total number of products, along with the number of non-missing values in description, listing_price, and last_visited.
 ```SQL
 SELECT
-  COUNT(*) AS total rows,
+  COUNT(*) AS total_rows,
   COUNT(i.description) AS count_description,
-  COUNT(f,listring_price) AS count_listing_price,
+  COUNT(f.listing_price) AS count_listing_price,
   COUNT(t.last_visited) AS count_last_visited
 FROM info i
 JOIN finance f
