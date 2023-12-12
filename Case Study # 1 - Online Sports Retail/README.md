@@ -31,19 +31,20 @@ This project involves 9 tasks that require the use of SQL to analyze and optimiz
 Count the total number of products, along with the number of non-missing values in description, listing_price, and last_visited.
 ```SQL
 SELECT
-  COUNT(*) as total rows,
-  COUNT() 
+  COUNT(*) AS total rows,
+  COUNT(i.description) AS count_description,
+  COUNT(f,listring_price) AS count_listing_price,
+  COUNT(t.last_visited) AS count_last_visited
 FROM info i
 JOIN finance f
 ON i.product_id = f.product_id
 JOIN traffic t
 ON i.product_id = t.product_id
 ```
-
-Steps:
+**Steps:**
 - Use `JOIN` to merge `info` table with `finance` and `traffic`, matching on `product id`.
 - To determine the total number of the required fields, we use `COUNT`.
 
-Results:
+**Results:**
 
 
