@@ -10,7 +10,7 @@ In this project, we play the role of a product analyst for an online sports clot
 The database provided to us, sports, contains five tables, with product_id being the primary key for all of them:
 *<p align="center"> ![Database](https://github.com/macababbadcherry/Learning-SQL/assets/148540172/16bc34ce-47eb-49fa-9eaf-dcca5d301f1a) </p>*
 
-Note that the project description and tasks of this case study has been sourced from [[DataCamp] Optimizing Online Sports Retail Revenue](https://app.datacamp.com/learn/projects/optimizing_online_revenue).
+Note that the project description and tasks of this case study has been sourced from [[DataCamp] Optimizing Online Sports Retail Revenue](https://app.datacamp.com/learn/projects/optimizing_online_revenue). The dataset can be obtained from [Kaggle](https://www.kaggle.com/datasets/irenewidyastuti/datacamp-optimizing-online-sports-retail-revenue).
 
 ## Project Tasks
 This project involves 9 tasks that require the use of SQL to analyze and optimize the revenue of an online sports clothing company. 
