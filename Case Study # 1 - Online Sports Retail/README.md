@@ -47,4 +47,5 @@ ON i.product_id = t.product_id
 
 **Results:**
 
-
+### 2. Nike vs Adidas pricing
+How do the price points of Nike and Adidas products differ?
