@@ -3,7 +3,20 @@
 ## Project Description
 In this project, we'll analyze the product data of an online sports clothing company and develop recommendations to help the company maximize its revenue. The information includes prices, discounts, revenue, ratings, reviews, product descriptions, and website traffic. 
 
-Note that the information related to the case study has been sourced from [[DataCamp] Optimizing Online Sports Retail Revenue](https://app.datacamp.com/learn/projects/optimizing_online_revenue).
+Note that the project description and tasks of this case study has been sourced from [[DataCamp] Optimizing Online Sports Retail Revenue](https://app.datacamp.com/learn/projects/optimizing_online_revenue).
+
+import markdown
+
+str = """
+|     Time    | Number of Trial with Results | Unique Units |
+|:-----------:|:----------------------------:|:------------:|
+| 20 Apr 2018 |            30,763            |    21,094    |
+|  7 Feb 2019 |            34,751            |    23,733    |
+| 12 Apr 2019 |            35,926            |    24,548    |
+|             |                              |              |
+"""
+
+extensions = ['markdown.extensions.extra', 'markdown.extensions.smarty']
 
 ## Project Tasks
 This project involves 9 tasks that require the use of SQL to analyze and optimize the revenue of an online sports clothing company. 
