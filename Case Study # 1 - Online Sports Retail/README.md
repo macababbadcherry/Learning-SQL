@@ -50,6 +50,7 @@ ON i.product_id = t.product_id
 ### 2. Nike vs Adidas pricing
 How do the price points of Nike and Adidas products differ?
 
+```SQL
 SELECT brand, CAST(listing_price AS INT), COUNT(*)
 FROM brands b
 JOIN finance f 
@@ -57,3 +58,115 @@ ON b.product_id = f.product_id
 WHERE listing_price > 0 
 GROUP BY brand, listing_price
 ORDER BY listing_price DESC
+```
+
+### 3. Labeling price ranges
+```SQL
+SELECT brand, 
+       COUNT(f.*), 
+       SUM(revenue) AS total_revenue,
+       CASE WHEN listing_price < 42 THEN 'Budget'
+            WHEN listing_price >= 42 AND listing_price < 74 THEN 'Average'
+            WHEN listing_price >= 74 AND listing_price < 129 THEN 'Expensive'
+            ELSE 'Elite' 
+            END AS price_category
+FROM brands b
+JOIN finance f
+ON b.product_id = f. product_id
+WHERE brand IS NOT NULL
+GROUP BY brand, price_category
+ORDER BY total_revenue DESC
+```
+
+### 4. Average discount by brand
+
+```SQL
+SELECT brand, AVG(discount)*100 AS average_discount
+FROM brands b
+JOIN finance f
+ON b.product_id = f.product_id
+WHERE brand IS NOT NULL
+GROUP BY brand
+```
+
+### 5. Correlation between revenue and reviews
+
+```SQL
+SELECT CORR(reviews, revenue) AS review_revenue_corr
+FROM reviews r
+JOIN finance f
+ON r.product_id = f.product_id
+```
+
+6. Ratings and reviews by product description length
+```SQL
+SELECT TRUNC(LENGTH(description)/100.0)*100 AS description_length,
+ROUND(AVG(CAST(rating as numeric)),2) AS average_rating
+FROM info i
+JOIN reviews r
+ON i.product_id = r.product_id
+WHERE description IS NOT NULL
+GROUP BY description_length
+ORDER BY description_length
+```
+
+7. Reviews by month and brand
+
+```SQL
+SELECT brand,
+       DATE_PART('month', last_visited) as month,
+       COUNT(r.*) as num_reviews
+FROM traffic t
+JOIN reviews r
+ON t.product_id = r.product_id
+JOIN brands b
+ON t.product_id = b.product_id
+GROUP BY brand, month
+HAVING brand IS NOT NULL
+  AND DATE_PART('month', last_visited) IS NOT NULL
+ORDER BY brand, month
+```
+
+8. Footwear product performance
+
+```SQL
+WITH footwear AS
+(
+    SELECT description, revenue
+    FROM info i
+    JOIN finance f
+    ON i.product_id = f.product_id
+    WHERE description ILIKE '%shoe%' 
+        OR description ILIKE '%trainer%'
+        OR description ILIKE'%foot%'
+        AND description IS NOT NULL
+)
+
+SELECT COUNT(*) as num_footwear_products, 
+       percentile_disc(0.5) WITHIN GROUP (ORDER BY revenue) AS median_footwear_revenue
+FROM footwear
+```
+9. Clothing product performance
+   
+```SQL
+WITH footwear AS
+(
+    SELECT description, revenue
+    FROM info i
+    JOIN finance f
+    ON i.product_id = f.product_id
+    WHERE description ILIKE '%shoe%' 
+        OR description ILIKE '%trainer%'
+        OR description ILIKE'%foot%'
+        AND description IS NOT NULL
+)
+
+SELECT COUNT(i.*) AS num_clothing_products,
+       percentile_disc(0.5) WITHIN GROUP (ORDER BY f.revenue) AS median_clothing_revenue
+FROM info i
+JOIN finance f
+ON i.product_id = f.product_id
+WHERE description NOT IN (SELECT description FROM footwear)
+
+```
+
