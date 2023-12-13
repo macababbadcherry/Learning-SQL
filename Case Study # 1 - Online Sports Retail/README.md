@@ -98,7 +98,7 @@ JOIN finance f
 ON r.product_id = f.product_id
 ```
 
-6. Ratings and reviews by product description length
+### 6. Ratings and reviews by product description length
 ```SQL
 SELECT TRUNC(LENGTH(description)/100.0)*100 AS description_length,
 ROUND(AVG(CAST(rating as numeric)),2) AS average_rating
@@ -110,7 +110,7 @@ GROUP BY description_length
 ORDER BY description_length
 ```
 
-7. Reviews by month and brand
+### 7. Reviews by month and brand
 
 ```SQL
 SELECT brand,
@@ -127,7 +127,7 @@ HAVING brand IS NOT NULL
 ORDER BY brand, month
 ```
 
-8. Footwear product performance
+### 8. Footwear product performance
 
 ```SQL
 WITH footwear AS
@@ -146,7 +146,7 @@ SELECT COUNT(*) as num_footwear_products,
        percentile_disc(0.5) WITHIN GROUP (ORDER BY revenue) AS median_footwear_revenue
 FROM footwear
 ```
-9. Clothing product performance
+### 9. Clothing product performance
    
 ```SQL
 WITH footwear AS
