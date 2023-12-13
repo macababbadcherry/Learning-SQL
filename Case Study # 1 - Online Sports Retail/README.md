@@ -49,3 +49,11 @@ ON i.product_id = t.product_id
 
 ### 2. Nike vs Adidas pricing
 How do the price points of Nike and Adidas products differ?
+
+SELECT brand, CAST(listing_price AS INT), COUNT(*)
+FROM brands b
+JOIN finance f 
+ON b.product_id = f.product_id
+WHERE listing_price > 0 
+GROUP BY brand, listing_price
+ORDER BY listing_price DESC
